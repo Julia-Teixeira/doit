@@ -8,6 +8,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Button } from "@chakra-ui/button";
 import { useState } from "react";
+import { useAuth } from "../../contexts/authContext";
 
 const signInSchema = yup.object().shape({
   email: yup.string().required("Email obrigatório.").email("Email inválido"),
@@ -21,7 +22,7 @@ interface iSignInData {
 
 export const Login = () => {
   const [loading, setLoading] = useState(false);
-
+  const { signIn } = useAuth();
   const {
     formState: { errors },
     register,
@@ -31,7 +32,10 @@ export const Login = () => {
   });
 
   const handleSignIn = (data: iSignInData) => {
-    console.log(data);
+    setLoading(true);
+    signIn(data)
+      .then((_) => setLoading(false))
+      .catch((error) => setLoading(false));
   };
 
   return (
