@@ -2,7 +2,7 @@ import { Box, Button, Grid, Heading, Text, VStack } from "@chakra-ui/react";
 import { Input } from "../../components/Form/Input";
 import { FieldErrorsImpl, UseFormRegister } from "react-hook-form";
 import { FaEnvelope, FaLock } from "react-icons/fa";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export interface iSignInData {
   email: string;
