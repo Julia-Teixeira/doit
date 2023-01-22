@@ -1,3 +1,4 @@
+import { AxiosError } from "axios";
 import {
   createContext,
   useCallback,
@@ -31,6 +32,8 @@ interface AuthContextData {
   accessToken: string;
   signIn: (credentials: iSignIn) => Promise<void>;
   signOut: () => void;
+  errorMsg: string;
+  setErrorMsg: React.Dispatch<React.SetStateAction<string>>;
 }
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
@@ -53,6 +56,8 @@ export const AuthProvider = ({ children }: iAuthProvider) => {
     return {} as iAuthState;
   });
 
+  const [errorMsg, setErrorMsg] = useState("");
+
   const signIn = useCallback(async ({ email, password }: iSignIn) => {
     try {
       const response = await api.post("/login", { email, password });
@@ -61,9 +66,11 @@ export const AuthProvider = ({ children }: iAuthProvider) => {
       localStorage.setItem("@DoIt:accessToken", accessToken);
       localStorage.setItem("@DoIt:user", JSON.stringify(user));
 
-      setData({ accessToken, user });
-    } catch (error) {
-      console.error(error);
+      setTimeout(() => {
+        setData({ accessToken, user });
+      }, 1000);
+    } catch (error: AxiosError | any) {
+      setErrorMsg(error.response.data);
     }
   }, []);
 
@@ -81,6 +88,8 @@ export const AuthProvider = ({ children }: iAuthProvider) => {
         accessToken: data.accessToken,
         user: data.user,
         signOut,
+        errorMsg,
+        setErrorMsg,
       }}
     >
       {children}

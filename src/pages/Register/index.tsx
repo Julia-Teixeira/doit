@@ -57,7 +57,7 @@ export const Register = () => {
 
   const handleSignUp = ({ name, email, password }: iRegisterData) => {
     api
-      .post("/register", { name, email, password })
+      .post("register", { name, email, password })
       .then((response) => {
         setLoading(false);
         onModalSuccessOpen();

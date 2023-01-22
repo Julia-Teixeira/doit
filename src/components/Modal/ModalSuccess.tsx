@@ -19,8 +19,8 @@ interface iModalSuccessProps {
   isOpen: boolean;
   onClose: () => void;
   message: string;
-  buttonMessage: string;
-  onClick: () => void;
+  buttonMessage?: string;
+  onClick?: () => void;
   secondaryText: string;
 }
 
@@ -65,18 +65,20 @@ export const ModalSuccess = ({
           <Text align="center" color="gray.600" fontSize="sm">
             <Box dangerouslySetInnerHTML={{ __html: message }} />
           </Text>
-          <Button
-            onClick={onClick}
-            h="60px"
-            w="100%"
-            bg="purple.600"
-            _hover={{ bg: "purple.700" }}
-            color="white"
-            mt="20px"
-            fontWeight="bold"
-          >
-            {buttonMessage}
-          </Button>
+          {buttonMessage && (
+            <Button
+              onClick={onClick}
+              h="60px"
+              w="100%"
+              bg="purple.600"
+              _hover={{ bg: "purple.700" }}
+              color="white"
+              mt="20px"
+              fontWeight="bold"
+            >
+              {buttonMessage}
+            </Button>
+          )}
         </ModalBody>
         <ModalFooter>
           <Text align="center" color="gray.600" fontSize="sm">

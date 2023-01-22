@@ -76,11 +76,12 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
           variant="outline"
           _hover={{ bgColor: "gray.100" }}
           _placeholder={{ color: "gray.300" }}
+          _focus={{ bg: "gray.100", borderColor: "purple.800" }}
           size="lg"
           h="60px"
           color={inputVariation[variation]}
           borderColor={inputVariation[variation]}
-          onFocus={handleInputFocus}
+          onFocusCapture={handleInputFocus}
           onBlurCapture={handleInputBlur}
           onChangeCapture={(e) => setValue(e.currentTarget.value)}
           {...rest}
