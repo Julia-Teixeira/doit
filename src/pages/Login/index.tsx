@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
-import { useAuth } from "../../contexts/authContext";
+import { useAuth } from "../../contexts/AuthContext";
 import { Navigate } from "react-router-dom";
 import { LoginInfo } from "./LoginInfo";
 import { iSignInData, LoginForm } from "./LoginForm";
