@@ -11,7 +11,7 @@ import {
   Text,
   theme,
 } from "@chakra-ui/react";
-import { useAuth } from "../../contexts/authContext";
+import { useAuth } from "../../contexts/AuthContext";
 import { FiLogOut } from "react-icons/fi";
 
 interface iMenuProps {

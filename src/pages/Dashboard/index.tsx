@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom";
 import { Card } from "../../components/Card";
 import { SearchBox } from "../../components/Form/SearchBox";
 import { Header } from "../../components/Header";
-import { useAuth } from "../../contexts/authContext";
+import { useAuth } from "../../contexts/AuthContext";
 
 export const Dashboard = () => {
   const { accessToken } = useAuth();
